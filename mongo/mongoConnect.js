@@ -1,18 +1,16 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const config = require('config');
+const externalDataParser = require('../extenalDataParser/parseOutsideData');
 
 module.exports = async () => {
-  mongoose.connect(
-    `mongodb+srv://${config.get("mUser")}:${config.get(
-      "mPass"
-    )}@speedtech.vyer8.gcp.mongodb.net/todoList1`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  );
-
   try {
-    await mongoose.connect("mongodb://localhost:27017/test", {
+    await mongoose.connect(config.get('atlasUrl'), {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
+    console.log('connected to atlas');
+    externalDataParser();
   } catch (error) {
-    console.log("from Mongo: ", error);
+    console.log('from Mongo: ', error);
   }
 };
