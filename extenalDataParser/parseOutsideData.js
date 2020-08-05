@@ -13,6 +13,9 @@ module.exports = async () => {
   }
 };
 
+// checkign the original json for flat non flat, and when i say flat - in this case a
+// flat hit is where the object has product details mixed with shipper details
+
 const checkStracture = (data) => {
   data.map((item, index) => {
     if (Object.keys(item).length === 3) {
@@ -51,6 +54,8 @@ const objectToModelParser = async (obj) => {
     console.log('from objectToModel Parser: ', error);
   }
 };
+
+// on results that are not flat i need to dig in deeper
 
 const getInnerObjects = (objData) => {
   for (const i in objData) {
