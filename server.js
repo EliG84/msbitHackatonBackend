@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoConnect = require('./mongo/mongoConnect');
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 const app = express();
 
 mongoConnect();
