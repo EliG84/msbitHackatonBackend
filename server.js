@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const mongoConnect = require('./mongo/mongoConnect');
 
-mongoConnect();
-
 const port = process.env.PORT;
 const app = express();
+
+mongoConnect();
 
 app.use(cors());
 app.use(express.json());
