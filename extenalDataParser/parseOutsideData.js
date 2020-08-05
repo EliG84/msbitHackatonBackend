@@ -1,5 +1,5 @@
 const axios = require('axios');
-const Product = require('../models/productModel');
+const Product = require('../Models/productModel');
 
 const externalJsonUrl =
   'https://msbit-exam-products-store.firebaseio.com/deliveryProducts/products.json';
@@ -23,19 +23,22 @@ const checkStracture = (data) => {
   });
 };
 
+// converts a single object to my product model and is saved in the DB
+
 const objectToModelParser = async (obj) => {
   let objToSave = {
     extId: obj['id'],
     creationDate: obj['creationDate'],
     name: obj['name'],
     url: obj['url'],
+    description: obj['description'],
     thumbnailUrl: obj['thumbnailUrl'],
     price: obj['price'],
     delivered: obj['status'] ? true : false,
     shipper: obj['type'],
   };
   // adding to db on every server restart. if product status changes to 1 in the original api.
-  // it will also be updated as delivered in my database
+  // it will also be updated as delivered in my database, also any info update from source will reflect in the DB
   // if a product is new , it will just be added with the create function.
   try {
     const product = await Product.findOne({ extId: objToSave.extId });
