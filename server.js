@@ -5,7 +5,7 @@ const mongoConnect = require('./mongo/mongoConnect');
 mongoConnect();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
