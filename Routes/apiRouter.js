@@ -37,4 +37,9 @@ router.get('/products', async (req, res) => {
   });
 });
 
+router.get('/adminAccess', async (req, res) => {
+  const data = await Product.find();
+  res.status(200).json(data);
+});
+
 module.exports = router;
