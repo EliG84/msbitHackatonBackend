@@ -4,7 +4,7 @@ const _ = require('lodash');
 const router = express.Router();
 
 router.get('/products', async (req, res) => {
-  const { page = 1, limit = 3, search = '' } = req.query;
+  const { page = 1, limit = 100, search = '' } = req.query;
   const mySearch = new RegExp(`${search}`, 'i');
   const data = await Product.find({
     $and: [
